@@ -1,0 +1,62 @@
+﻿@using EmailTemplateBuilder.Controller
+@model EmailTemplateBuilder.Controller.PersonalStyleModel
+
+
+<html>
+<head>
+    <style type="text/css">
+        body {
+            font-family: 'Open Sans', 'Helvetica Neue', Helvetica, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+<table width="100%">
+    <tr>
+        <td align="center">
+            <table width="600">
+                <tr>
+                    <td colspan="2" style="text-align: left; padding-top:100px">
+                        <h1>Personal Styling Profile</h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="email-content">
+
+                        @if (Model.AppointmentInfo.NumberOfGuests > 1)
+                        {
+                            <p>
+                                You have a new Personal Styling Profile from groupd code @Model.AppointmentInfo.GroupCode, for @Model.ContactDetails.Name on @Model.AppointmentInfo.GetDateRequested().ToShortDateString() 
+                                in the @Model.AppointmentInfo.TimeRequested. See attached PDF for more information.
+                            </p>
+                        }
+                        else
+                        {
+                            <p>
+                                You have a new tentative Personal Styling appointment for @Model.ContactDetails.Name on @Model.AppointmentInfo.GetDateRequested() in the @Model.AppointmentInfo.TimeRequested. 
+                                See attached PDF for more information. Please contact customer to confirm this appointment
+                            </p>
+                        }
+
+                    </td>
+                </tr>
+                <tr style="height: 20px">&nbsp;</tr>
+                <tr>
+                    <td style="width: 40%">Customer Name:</td>
+                    <td>@Model.ContactDetails.Name</td>
+                </tr>
+                <tr>
+                    <td style="width: 40%">Customer Phone:</td>
+                    <td>@Model.ContactDetails.PhoneNumber</td>
+                </tr>
+                <tr>
+                    <td style="width: 40%">Customer Email:</td>
+                    <td><a href="mailto:@Model.ContactDetails.Email">@Model.ContactDetails.Email</a></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
